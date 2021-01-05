@@ -10,8 +10,8 @@ def calculate_valid_crop_size(crop_size, upscale_factor):
 
 def input_transform(crop_size, upscale_factor):
     return Compose([
-        CenterCrop(crop_size),
-        # torchvision.transforms.RandomCrop(crop_size, pad_if_needed=True),
+        # CenterCrop(crop_size),
+        torchvision.transforms.RandomCrop(crop_size, pad_if_needed=True, padding_mode='reflect'),
         Resize((crop_size//upscale_factor, crop_size//upscale_factor)),
         Resize((crop_size, crop_size)),
         ToTensor(),
