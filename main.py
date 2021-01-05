@@ -47,7 +47,7 @@ parser.add_argument('--add_noise', action='store_true',
 parser.add_argument('--noise_std', type=float, default=3.0,
                     help='standard deviation of gaussian noise')
 parser.add_argument('--test', action='store_true', help='test mode')
-parser.add_argument('--model', default='', type=str, metavar='PATH',
+parser.add_argument('--model', type=str, metavar='PATH',
                     help='path to test or resume model')
 
 
@@ -94,8 +94,9 @@ def main():
                                 output_device=opt.gpuids[0])
 
     if opt.model is not None:
-        print("Model {} loaded!".format(opt.model))
+        
         model.module.load_state_dict(torch.load(opt.model).module.state_dict())
+        print("Model {} loaded!".format(opt.model))
     optimizer = optim.Adam(model.parameters(), lr=opt.lr,
                            weight_decay=opt.weight_decay)
 
