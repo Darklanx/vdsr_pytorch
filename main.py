@@ -82,9 +82,7 @@ def main():
         dataset=test_set, num_workers=opt.threads, batch_size=opt.test_batch_size, shuffle=False)
 
     model = VDSR()
-    if opt.model is not None:
-        print("Model {} loaded!".format(opt.model))
-        model.load_state_dict(torch.load(opt.model))
+    
     criterion = nn.MSELoss()
 
     if opt.cuda:
@@ -95,6 +93,9 @@ def main():
         model = nn.DataParallel(model, device_ids=opt.gpuids,
                                 output_device=opt.gpuids[0])
 
+    if opt.model is not None:
+        print("Model {} loaded!".format(opt.model))
+        model.load_state_dict(torch.load(opt.model))
     optimizer = optim.Adam(model.parameters(), lr=opt.lr,
                            weight_decay=opt.weight_decay)
 
