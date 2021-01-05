@@ -40,7 +40,8 @@ class DatasetFromFolder(data.Dataset):
         self.augmentation = transforms.Compose([
             transforms.RandomHorizontalFlip(),
             transforms.RandomRotation(15),
-            transforms.RandomVerticalFlip()
+            transforms.RandomVerticalFlip(),
+            torchvision.transforms.RandomCrop(256, pad_if_needed=True, padding_mode='reflect'),
         ])
 
     def __getitem__(self, index):
