@@ -5,7 +5,7 @@ from os.path import join
 from PIL import Image, ImageFilter
 import numpy as np
 import torchvision as vision
-
+import torchvision.transforms as transforms
 
 toPIL = vision.transforms.ToPILImage()
 
@@ -37,9 +37,15 @@ class DatasetFromFolder(data.Dataset):
         self.target_transform = target_transform
         self.add_noise = add_noise
         self.noise_std = noise_std
+        self.augmentation = transforms.Compose([
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(15),
+            transforms.RandomVerticalFlip()
+        ])
 
     def __getitem__(self, index):
         input = load_img(self.image_filenames[index])
+        input = self.augmentation(input)
         target = input.copy()
         if self.input_transform:
             if self.add_noise:
