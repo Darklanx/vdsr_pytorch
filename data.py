@@ -2,7 +2,7 @@ from os.path import join
 from torchvision.transforms import Compose, CenterCrop, ToTensor, Resize
 
 from data_utils import DatasetFromFolder
-
+import torchvision
 
 def calculate_valid_crop_size(crop_size, upscale_factor):
     return crop_size - (crop_size % upscale_factor)
