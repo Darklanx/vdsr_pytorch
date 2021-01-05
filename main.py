@@ -95,7 +95,7 @@ def main():
 
     if opt.model is not None:
         print("Model {} loaded!".format(opt.model))
-        model.load_state_dict(torch.load(opt.model))
+        model.module.load_state_dict(torch.load(opt.model).module.state_dict())
     optimizer = optim.Adam(model.parameters(), lr=opt.lr,
                            weight_decay=opt.weight_decay)
 
