@@ -56,7 +56,7 @@ optional arguments:
 
 #### To reproduce the homework result, please run:
 
-You can modify the batch_size to fit your GPU, the below code runs for 300 epoch to be ensure convergence, but in fact, around 150 epoch should do the work.
+You can modify the batch_size to fit your GPU, the below code runs for 300 epoch to be ensure convergence, but in fact, around 50 epoch should do the work.
 
 ```
 > python3 main.py --dataset HW --cuda  --upscale_factor 3 --crop_size 256 --batch_size 60 --test_batch_size 16 --epochs 300 --clip 1 --step 20 --lr 1e-2
