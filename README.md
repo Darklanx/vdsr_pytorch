@@ -9,9 +9,14 @@ And you can input gaussian noise to input images.
 `torchvision`  
 `python-tk` (or `python3-tk`)
 
+`argparse`
+
+`glob`
+
+`pillow`
+
 ## Download dataset
-1. Download [DF2K dataset](https://drive.google.com/file/d/1P9pcaGjvq3xiF22GXIq7ciZta3rjZxaY/view?usp=sharing). Or other dataset is ok, but directory hierarchy -> `<NAME>/train/`, `<NAME>/valid/`
-2. move under dataset directory (i.e. `vdsr_pytorch/dataset/DF2K`)
+Homework dataset is already included.
 
 ## Usage
 ### Training & Evaluation
@@ -52,35 +57,25 @@ optional arguments:
   --model PATH          path to test or resume model
 ```
 
-#### Example for training
-```
-> python main.py --dataset DF2K --cuda --gpuids 0 1 --upscale_factor 2 --crop_size 256 --batch_size 128 --test_batch_size 32 --epochs 100
-```
-or
-```
-> python3 main.py --dataset DF2K --cuda --gpuids 0 1 --upscale_factor 2 --crop_size 256 --batch_size 128 --test_batch_size 32 --epochs 100
-```
+#### To reproduce the homework result, please run:
 
-#### Example for evaluation
+You can modify the batch_size to fit your GPU, the below code runs for 300 epoch to be ensure convergence, but in fact, around 150 epoch should do the work.
+
 ```
-> python main.py --dataset Urban100 --cuda --gpuids 0 1 --upscale_factor 2 --crop_size 256 --test_batch_size 32 --test --model model_epoch_100.pth
-```
-or
-```
-> python3 main.py --dataset Urban100 --cuda --gpuids 0 1 --upscale_factor 2 --crop_size 256 --test_batch_size 32 --test --model model_epoch_100.pth
+> python3 main.py --dataset HW --cuda  --upscale_factor 3 --crop_size 256 --batch_size 60 --test_batch_size 16 --epochs 300 --clip 1 --step 20 --lr 1e-2
 ```
 
 ### Sample usage
 ```
-usage: run.py [-h] --input_image INPUT_IMAGE --model MODEL
+usage: run.py [-h] --input_folder INPUT_FOLDER --model MODEL
               [--output_filename OUTPUT_FILENAME]
               [--scale_factor SCALE_FACTOR] [--cuda]
               [--gpuids GPUIDS [GPUIDS ...]]
 
 optional arguments:
   -h, --help            show this help message and exit
-  --input_image INPUT_IMAGE
-                        input image to use
+  --input_folder INPUT_FOLDER
+												folder containing testing images
   --model MODEL         model file to use
   --output_filename OUTPUT_FILENAME
                         where to save the output image
@@ -91,11 +86,10 @@ optional arguments:
                         GPU ID for using
 ```
 
-#### Example for demonstration
+#### After training the model:
+
+Run the below code and you will find the result in the folder **./submission**
+
 ```
-> python run.py --cuda --gpuids 0 1 --scale_factor 2 --model model_epoch_100.pth --input_image test_scale2x.jpg --output_filename test_scale2x_out.jpg
-```
-or
-```
-> python3 run.py --cuda --gpuids 0 1 --scale_factor 2 --model model_epoch_100.pth --input_image test_scale2x.jpg --output_filename test_scale2x_out.jpg
+> python3 run.py  --scale_factor 3 --model model_epoch_300.pth --folder ./testing_lr_images
 ```
