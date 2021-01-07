@@ -88,5 +88,5 @@ optional arguments:
 Run the below code and you will find the result in the folder **./submission**
 
 ```
-> python3 run.py  --scale_factor 3 --model model_epoch_300.pth --folder ./testing_lr_images
+> python3 run.py  --scale_factor 3 --model model_epoch_300.pth --folder ./testing_lr_images --cuda
 ```
