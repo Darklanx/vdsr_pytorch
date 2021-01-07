@@ -8,13 +8,10 @@ And you can input gaussian noise to input images.
 `torch`  
 `torchvision`  
 `python-tk` (or `python3-tk`)
-
 `argparse`
-
 `glob`
-
 `pillow`
-
+A `requirement.txt` is also included for convenience.
 ## Download dataset
 Homework dataset is already included.
 
