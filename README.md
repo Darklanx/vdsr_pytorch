@@ -11,7 +11,7 @@ And you can input gaussian noise to input images.
 `argparse`  
 `glob`  
 `pillow`  
-A `requirement.txt` is also included for convenience.
+A `requirements.txt` is also included for convenience.
 ## Download dataset
 Homework dataset is already included.
 
